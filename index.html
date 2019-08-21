@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>Location Tracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="login_div" class="main-div">
+    <h3>Login</h3>
+    <input type="email" placeholder="Email..." id="email_field"/>
+    <input type="password" placeholder="Password..." id="password_field"/>
+
+    <button onclick="login()">Login to Account</button>
+</div>
+
+<div id="user_div" class="loggedin-div">
+    <ul>
+        <li><p id="user_para"></p></li>
+        <li style="float:right;  padding: 14px 16px;">
+            <button onclick="logout()">Logout</button>
+        </li>
+    </ul>
+
+    <div id="mapdiv"></div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCSUDJwjzp5qGqEHWr0wpfIWH-lf_28CMA",
+        authDomain: "realtimelocationtracker-250410.firebaseapp.com",
+        databaseURL: "https://realtimelocationtracker-250410.firebaseio.com",
+        projectId: "realtimelocationtracker-250410",
+        storageBucket: "",
+        messagingSenderId: "810074638547",
+        appId: "1:810074638547:web:9cc0937d57b8bf5a"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const dbRef = firebase.database().ref().child("devices");
+
+
+    var map = L.map('mapdiv', {
+        'center': [0, 0],
+        'zoom': 3,
+        'layers': [
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+            })
+        ]
+    });
+    var markers = {};
+
+    dbRef.on('value', function (snapshot) {
+        snapshot.forEach((child) => {
+            if (!markers.hasOwnProperty(child.val().id)) {
+                markers[child.val().id] = new L.Marker([child.val().latitude, child.val().longitude]).addTo(map).bindPopup(child.val().name);
+                markers[child.val().id].previousLatLngs = [];
+            } else {
+                markers[child.val().id].previousLatLngs.push(markers[child.val().id].getLatLng());
+                markers[child.val().id].setLatLng([child.val().latitude, child.val().longitude]);
+            }
+        });
+    })
+
+</script>
+<script src="index.js"></script>
+
+</body>
+</html>
