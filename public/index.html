@@ -67,10 +67,7 @@
     dbRef.on('value', function (snapshot) {
         snapshot.forEach((child) => {
             if (!markers.hasOwnProperty(child.val().id)) {
-                var user="<p><strong>User:</strong> "+child.val().name+"<br/>";
-                var status=child.val().online_status?"Online<br/>":"Offline<br/>";;
-                var date="<strong>Last Online:</strong> "+new Date((child.val().last_updated))+"</p>";
-                markers[child.val().id] = new L.Marker([child.val().latitude, child.val().longitude]).addTo(map).bindPopup(user+"<strong>Status: </strong>"+status+date);
+                markers[child.val().id] = new L.Marker([child.val().latitude, child.val().longitude]).addTo(map).bindPopup(child.val().name);
                 markers[child.val().id].previousLatLngs = [];
             } else {
                 markers[child.val().id].previousLatLngs.push(markers[child.val().id].getLatLng());
