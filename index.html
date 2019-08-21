@@ -64,7 +64,7 @@
     });
     var markers = {};
 
-  dbRef.on('value', function (snapshot) {
+    dbRef.on('value', function (snapshot) {
         snapshot.forEach((child) => {
             if (!markers.hasOwnProperty(child.val().id)) {
                 var user="<p><strong>User:</strong> "+child.val().name+"<br/>";
