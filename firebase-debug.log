@@ -1,0 +1,25 @@
+[debug] [2019-08-21T11:41:55.839Z] ----------------------------------------------------------------------
+[debug] [2019-08-21T11:41:55.842Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Abid Hasan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-08-21T11:41:55.842Z] CLI Version:   7.2.4
+[debug] [2019-08-21T11:41:55.842Z] Platform:      win32
+[debug] [2019-08-21T11:41:55.842Z] Node Version:  v8.11.3
+[debug] [2019-08-21T11:41:55.842Z] Time:          Wed Aug 21 2019 17:41:55 GMT+0600 (Bangladesh Standard Time)
+[debug] [2019-08-21T11:41:55.842Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-08-21T11:41:55.849Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-21T11:41:55.850Z] > authorizing via signed-in user
+[debug] [2019-08-21T11:41:55.850Z] [iam] checking project realtimelocationtracker-250410 for permissions ["firebase.projects.get"]
+[debug] [2019-08-21T11:41:55.851Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/realtimelocationtracker-250410:testIamPermissions  
+
+[debug] [2019-08-21T11:41:57.422Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-21T11:41:57.428Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/realtimelocationtracker-250410  
+ 
+[debug] [2019-08-21T11:41:57.960Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Abid Hasan\Desktop\location-tracker-web'...
+[info] 
+[debug] [2019-08-21T11:41:57.967Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/realtimelocationtracker-250410/webApps/-/config  
+ 
+[debug] [2019-08-21T11:41:58.645Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000

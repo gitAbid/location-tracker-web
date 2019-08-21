@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "realtimelocationtracker-250410"
+    "default": "realtimelocationtracker-250410",
+    "staging": "realtimelocationtracker-250410"
   }
 }
